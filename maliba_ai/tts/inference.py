@@ -128,7 +128,7 @@ class BambaraTTSInference:
         if not isinstance(text, str):
             raise TypeError("text should be a string")
                 
-        formatted_text = f"{speaker_id}: {text}" if speaker_id else text
+        formatted_text = f"{speaker_id.id}: " + text  if speaker_id else text
         generated_waveform = self.generate_speech_from_text(
             text=formatted_text,
             temperature=temperature,
