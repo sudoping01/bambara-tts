@@ -36,7 +36,7 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.8",
-    
+
     install_requires=[
         "unsloth==2025.5.9",  
         "bitsandbytes==0.46.0",
@@ -51,7 +51,7 @@ setup(
         "torch==2.5.1",
         "torchaudio==2.5.1",
         "transformers", 
-        "huggingface_hub==0.20.0"
+        "huggingface_hub"
        
     ],
 
