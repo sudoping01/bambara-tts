@@ -48,7 +48,7 @@ setup(
         "torch==2.5.1",
         "torchaudio==2.5.1",
         "transformers==4.41.2",
-        "unsloth",  
+        "unsloth==2024.9.post4",  
     ],
     extras_require={
         "dev": [
