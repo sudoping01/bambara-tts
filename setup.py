@@ -20,7 +20,7 @@ setup(
         "Documentation": "https://github.com/MALIBA-AI/bambara-tts/wiki",
         "Source Code": "https://github.com/MALIBA-AI/bambara-tts",
     },
-    packages=find_packages(include=['maliba_ai*']),
+    packages=find_packages(),
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
