@@ -49,7 +49,7 @@ setup(
         "torch==2.5.1",
         "torchaudio==2.5.1",
         "transformers", 
-        "huggingface_hub"
+        "huggingface_hub==0.20.0"
        
     ],
     extras_require={
