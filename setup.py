@@ -37,7 +37,7 @@ setup(
     ],
     python_requires=">=3.8",
     install_requires=[
-         "unsloth",  
+         "unsloth==2025.5.9",  
         "einops==0.8.1",
         "einx==0.3.0",
         "numpy==2.2.3",
