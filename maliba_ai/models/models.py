@@ -6,7 +6,7 @@ from huggingface_hub import snapshot_download
 from maliba_ai.config.settings import MODEL_REPO, BASE_SPARK_MODEL
 from maliba_ai.sparktts.models.audio_tokenizer import BiCodecTokenizer
 
-def load_tts_model(hf_token):
+def load_tts_model():
     """
     Load the TTS model and tokenizer from the specified repository.
     
@@ -20,8 +20,7 @@ def load_tts_model(hf_token):
         model_name=MODEL_REPO,
         max_seq_length=2048,
         dtype=torch.float32,
-        load_in_4bit=False,
-        token=hf_token,
+        load_in_4bit=False
     )
     FastModel.for_inference(model)
     return model, tokenizer
