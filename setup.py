@@ -48,7 +48,8 @@ setup(
         "soxr==0.5.0.post1",
         "torch==2.5.1",
         "torchaudio==2.5.1",
-        "transformers"
+        "transformers", 
+        "huggingface_hub"
        
     ],
     extras_require={
