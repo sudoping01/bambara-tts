@@ -7,7 +7,7 @@ with open(os.path.join(this_directory, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
-    name="maliba-ai-bambara-tts",
+    name="maliba_ai",
     version="0.1.0",
     author="Maliba-AI Engineering Team",  
     author_email="contact@maliba-ai.com",  
