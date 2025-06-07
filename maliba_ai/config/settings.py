@@ -5,7 +5,7 @@ from typing import List
 MODEL_REPO = "sudoping01/bambara-tts-1-merged-16bit"
 BASE_SPARK_MODEL= "unsloth/Spark-TTS-0.5B"
 
-SPEAKER_IDS = ["SPEAKER_01", "SPEAKER_02", "SPEAKER_03", "SPEAKER_04", "SPEAKER_05"]
+SPEAKER_IDS = ["SPEAKER_1", "SPEAKER_2", "SPEAKER_3", "SPEAKER_4", "SPEAKER_5"]
 
 
 @dataclass
