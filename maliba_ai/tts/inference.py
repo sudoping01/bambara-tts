@@ -17,7 +17,7 @@ class BambaraTTSInference:
         """
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.hf_token = hf_token
-        self.model, self.tokenizer = load_tts_model(self.hf_token)
+        self.model, self.tokenizer = load_tts_model()
         self.audio_tokenizer = load_audio_tokenizer(self.device)
     
     @torch.inference_mode()
