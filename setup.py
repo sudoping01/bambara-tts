@@ -36,8 +36,10 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.8",
+    
     install_requires=[
-         "unsloth==2025.5.9",  
+        "unsloth==2025.5.9",  
+        "bitsandbytes==0.46.0",
         "einops==0.8.1",
         "einx==0.3.0",
         "numpy==2.2.3",
@@ -52,6 +54,7 @@ setup(
         "huggingface_hub==0.20.0"
        
     ],
+
     extras_require={
         "dev": [
             "pytest>=7.0.0",
