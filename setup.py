@@ -1,3 +1,85 @@
+# import os
+# from setuptools import find_packages, setup
+
+# this_directory = os.path.abspath(os.path.dirname(__file__))
+
+# with open(os.path.join(this_directory, "README.md"), encoding="utf-8") as f:
+#     long_description = f.read()
+
+# setup(
+#     name="maliba_ai",
+#     version="0.1.0",
+#     author="Maliba-AI Engineering Team",  
+#     author_email="contact@maliba-ai.com",  
+#     description="Bambara Text-to-Speech system using Maliba-AI models",
+#     long_description=long_description,
+#     long_description_content_type="text/markdown",
+#     url="https://github.com/MALIBA-AI/bambara-tts",  
+#     project_urls={
+#         "Bug Tracker": "https://github.com/MALIBA-AI/bambara-tts/issues",
+#         "Documentation": "https://github.com/MALIBA-AI/bambara-tts/wiki",
+#         "Source Code": "https://github.com/MALIBA-AI/bambara-tts",
+#     },
+#     packages=find_packages(),
+#     classifiers=[
+#         "Development Status :: 3 - Alpha",
+#         "Intended Audience :: Developers",
+#         "Intended Audience :: Science/Research",
+#         "Topic :: Scientific/Engineering :: Artificial Intelligence",
+#         "Topic :: Multimedia :: Sound/Audio :: Speech",
+#         "License :: OSI Approved :: MIT License",  
+#         "Programming Language :: Python :: 3",
+#         "Programming Language :: Python :: 3.8",
+#         "Programming Language :: Python :: 3.9",
+#         "Programming Language :: Python :: 3.10",
+#         "Programming Language :: Python :: 3.11",
+#         "Operating System :: OS Independent",
+#     ],
+#     python_requires=">=3.8",
+#     install_requires=[
+#         "einops==0.8.1",
+#         "einx==0.3.0",
+#         "numpy==2.2.3",
+#         "omegaconf==2.3.0",
+#         "packaging==24.2",
+#         "safetensors==0.5.2",
+#         "soundfile==0.12.1",
+#         "soxr==0.5.0.post1",
+#         "torch==2.5.1",
+#         "torchaudio==2.5.1",
+#         "transformers",
+#         "unsloth==2024.9.post4",  
+#     ],
+#     extras_require={
+#         "dev": [
+#             "pytest>=7.0.0",
+#             "black>=22.0.0",
+#             "flake8>=4.0.0",
+#             "mypy>=0.950",
+#             "isort>=5.10.0",
+#             "pre-commit>=2.17.0",
+#         ],
+#         "docs": [
+#             "sphinx>=4.0.0",
+#             "sphinx-rtd-theme>=0.5.0",
+#         ],
+#     },
+#     keywords=[
+#         "bambara",
+#         "tts",
+#         "text-to-speech",
+#         "speech synthesis",
+#         "maliba-ai",
+#         "artificial intelligence",
+#         "machine learning",
+#         "natural language processing",
+#     ],
+#     include_package_data=True,
+#     zip_safe=False,
+# )
+
+
+
 import os
 from setuptools import find_packages, setup
 
@@ -38,17 +120,19 @@ setup(
     python_requires=">=3.8",
     install_requires=[
         "einops==0.8.1",
-        "einx==0.3.0",
-        "numpy==2.2.3",
-        "omegaconf==2.3.0",
-        "packaging==24.2",
-        "safetensors==0.5.2",
-        "soundfile==0.12.1",
+        "einx",
+        "numpy>=1.21.0",
+        "omegaconf>=2.3.0",
+        "packaging>=21.0",
+        "safetensors>=0.4.0",
+        "soundfile==0.13.1",
         "soxr==0.5.0.post1",
-        "torch==2.5.1",
-        "torchaudio==2.5.1",
-        "transformers",
-        "unsloth==2024.9.post4",  
+        "torch>=2.0.0",
+        "torchaudio>=2.0.0",
+        "transformers>=4.30.0",
+        "unsloth",
+        "librosa==0.11.0",
+        "huggingface_hub>=0.16.0",
     ],
     extras_require={
         "dev": [
@@ -63,6 +147,11 @@ setup(
             "sphinx>=4.0.0",
             "sphinx-rtd-theme>=0.5.0",
         ],
+        "spark": [
+            # Additional dependencies for Spark-TTS integration
+            "scipy>=1.9.0",
+            "matplotlib>=3.5.0",
+        ],
     },
     keywords=[
         "bambara",
@@ -73,9 +162,14 @@ setup(
         "artificial intelligence",
         "machine learning",
         "natural language processing",
+        "spark-tts",
+        "multilingual",
     ],
     include_package_data=True,
     zip_safe=False,
+    entry_points={
+        "console_scripts": [
+            "bambara-tts=maliba_ai.cli:main",
+        ],
+    },
 )
-
-
