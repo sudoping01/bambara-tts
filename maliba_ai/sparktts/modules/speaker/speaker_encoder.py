@@ -17,9 +17,9 @@ import torch
 import torch.nn as nn
 
 from typing import List, Tuple
-from sparktts.modules.fsq.residual_fsq import ResidualFSQ
-from sparktts.modules.speaker.ecapa_tdnn import ECAPA_TDNN_GLOB_c512
-from sparktts.modules.speaker.perceiver_encoder import PerceiverResampler
+from maliba_ai.sparktts.modules.fsq.residual_fsq import ResidualFSQ
+from maliba_ai.sparktts.modules.speaker.ecapa_tdnn import ECAPA_TDNN_GLOB_c512
+from maliba_ai.sparktts.modules.speaker.perceiver_encoder import PerceiverResampler
 
 """
 x-vector + d-vector
