@@ -47,7 +47,7 @@ setup(
         "soxr==0.5.0.post1",
         "torch==2.5.1",
         "torchaudio==2.5.1",
-        "transformers==4.41.2",
+        "transformers",
         "unsloth==2024.9.post4",  
     ],
     extras_require={
