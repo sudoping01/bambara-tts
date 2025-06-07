@@ -37,6 +37,7 @@ setup(
     ],
     python_requires=">=3.8",
     install_requires=[
+         "unsloth==2024.9.post4",  
         "einops==0.8.1",
         "einx==0.3.0",
         "numpy==2.2.3",
@@ -47,8 +48,8 @@ setup(
         "soxr==0.5.0.post1",
         "torch==2.5.1",
         "torchaudio==2.5.1",
-        "transformers",
-        "unsloth==2024.9.post4",  
+        "transformers"
+       
     ],
     extras_require={
         "dev": [
