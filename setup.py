@@ -39,12 +39,11 @@ setup(
 
 
     install_requires=[
-
         "torch>=2.0.0",
         "torchaudio>=2.0.0", 
         "transformers>=4.40.0",
         "huggingface_hub>=0.20.0",
-        
+    
         "librosa==0.11.0",
         "soundfile==0.13.1",
         "soxr==0.5.0.post1",
@@ -52,14 +51,13 @@ setup(
         "einops==0.8.1",
         "einx",
         
-
         "omegaconf",
         "numpy>=1.24.0",
         "tqdm>=4.60.0",
         "requests>=2.25.0",
         "safetensors>=0.4.0",
         "packaging>=20.0",
-        "unsloth"
+        "unsloth==2025.6.1"
     ],
 
     extras_require={
