@@ -8,7 +8,7 @@ with open(os.path.join(this_directory, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="maliba_ai",
-    version="0.1.0",
+    version="1.0.0",
     author="Maliba-AI Engineering Team",  
     author_email="contact@maliba-ai.com",  
     description="Bambara Text-to-Speech system using Maliba-AI models",
