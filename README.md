@@ -1,6 +1,6 @@
 # MALIBA-AI Bambara TTS SDK
 
-Welcome to the MALIBA-AI Bambara Text-to-Speech SDK! This is the **first open-source TTS system** specifically designed for the Bambara language. Whether you're building educational platforms, creating voice interfaces, or developing accessibility tools, this SDK provides professional grade Bambara speech synthesis with multiple authentic speakers.
+Welcome to the MALIBA-AI Bambara Text-to-Speech! This is the **first open-source TTS system** specifically designed for the Bambara language. Whether you're building educational platforms, creating voice interfaces, or developing accessibility tools, this SDK provides professional grade Bambara speech synthesis with multiple authentic speakers.
 
 ## Table of Contents
 
@@ -51,6 +51,15 @@ For development installations:
 ```bash
 pip install git+https://github.com/MALIBA-AI/bambara-tts.git
 ```
+with uv (faster)
+
+```bash
+    uv pip install maliba_ai
+```
+
+```bash
+    uv pip install git+https://github.com/MALIBA-AI/bambara-tts.git
+```
 
 ---
 
@@ -60,15 +69,16 @@ Get started with Bambara TTS in under a minute:
 
 ```python
 from maliba_ai.tts import BambaraTTSInference
-from maliba_ai.config.speakers import Bourama
+from maliba_ai.config.settings import Speakers
 import soundfile as sf
 
 # Initialize the TTS system
 tts = BambaraTTSInference()
 
 # Generate speech from Bambara text
-text = "I ni ce! N ye MALIBA-AI ye."  # "Hello! I am MALIBA-AI."
-audio = tts.generate_speech(text, speaker_id=Bourama)
+text = "Aw ni ce. Sedu bɛ aw fo wa aw ka yafa a ma, ka da a kan tuma dɔw la kow ka can."  
+
+audio = tts.generate_speech(text, speaker_id=Speakers.Seydou)
 
 # Save the audio
 sf.write("greeting.wav", audio, 16000)
@@ -87,8 +97,11 @@ from maliba_ai.tts import BambaraTTSInference
 # Standard initialization
 tts = BambaraTTSInference()
 
-# With custom Hugging Face token (if needed)
-tts = BambaraTTSInference(hf_token="your_token_here")
+# With custom model path and sequence length
+tts = BambaraTTSInference(
+    model_path="your-custom-model-path",  # Optional: custom model: local or huggingface repo id (make sure you login in huggingface)
+    max_seq_length=4096                   # Optional: longer sequences
+)
 ```
 
 The system automatically:
@@ -106,45 +119,76 @@ The system automatically:
 The most straightforward way to generate Bambara speech:
 
 ```python
-# Basic synthesis with default speaker (Adame)
+from maliba_ai.config.settings import Speakers
+
+# Basic synthesis with default speaker (Adama)
 text = "Bamanankan ye kan ɲuman ye"  # "Bambara is a beautiful language"
 audio = tts.generate_speech(text)
 ```
 
 ### Speaker Selection
 
-Choose from our five authentic Bambara speakers:
+Choose from our ten authentic Bambara speakers:
+```
+Speaker recommendations:
 
-```python
-from maliba_ai.config.speakers import Adame, Moussa, Bourama, Modibo, Seydou
-
-# Use different speakers
-speakers_demo = [
-    (Adame, "I ni ce, n tɔgɔ ye Adame ye"),      # "Hello, my name is Adame"
-    (Moussa, "N bɛ baara kɛ sɛnɛkɛla la"),      # "I work in agriculture"
-    (Bourama, "Aw ye ɲɛnɛmako"),                # "Welcome"
-    (Modibo, "Kalan ka di kosɛbɛ"),             # "Learning is very good"
-    (Seydou, "Aw ka se ka baara in kɛ"),        # "You can do this work"
-]
-
-for speaker, text in speakers_demo:
-    audio = tts.generate_speech(text, speaker_id=speaker)
-    print(f"Generated speech for {speaker.id}")
+  - Bourama: Most stable and accurate 
+  - Adama: Natural conversational tone
+  - Moussa: Clear pronunciation  
+  - Modibo: Expressive delivery
+  - Seydou: Balanced characteristics
+  - Amadou: Warm and friendly voice
+  - Bakary: Deep, authoritative tone
+  - Ngolo: Youthful and energetic
+  - Ibrahima: Calm and measured
+  - Amara: Melodic and smooth
 ```
 
-**Note**: Bourama is our most stable and accurate speaker, recommended for production applications.
+```python
+from maliba_ai.config.settings import Speakers
+
+text = "Aw ni ce. Ne tɔgɔ ye Adama. Awɔ,  ne ye maliden de ye. Aw Sanbɛ Sanbɛ. San min tɛ ɲinan ye, an bɛɛ ka jɛ ka o seli ɲɔgɔn fɛ,  hɛɛrɛ  ni lafiya la. Ala ka Mali suma. Ala ka Mali yiriwa. Ala ka Mali taa ɲɛ. Ala ka an ka seliw caya. Ala ka yafa an bɛɛ ma."
+
+#let's try Adama
+tts.generate_speech(
+    text = text, 
+    speaker_id = Speakers.Adama,
+    output_filename = "adama.wav"
+)
+
+
+
+#let's try Seydou
+tts.generate_speech(
+    text = text, 
+    speaker_id = Speakers.Seydou,
+    output_filename = "seydou.wav"
+)
+
+
+# let's try Bourama
+tts.generate_speech(
+    text = text, 
+    speaker_id = Speakers.Bourama,
+    output_filename = "Bourama.wav"
+)
+
+```
+
+
+**Note**: Try all speakers and chose your favorite for your use case
 
 ### Advanced Configuration
 
-Fine-tune synthesis with custom parameters (though defaults are optimized):
+Fine-tune synthesis with custom parameters:
 
 ```python
 audio = tts.generate_speech(
     text="An ka baara kɛ ɲɔgɔn fɛ",           # "Let's work together"
-    speaker_id=Bourama,
-    temperature=0.8,                          # Keep at 0.8 for optimal results
+    speaker_id=Speakers.Bourama,
+    temperature=0.8,                          # Sampling temperature
     top_k=50,                                # Vocabulary sampling
-    top_p=1.0,                               # Nucleus sampling
+    top_p=0.9,                               # Nucleus sampling  
     max_new_audio_tokens=2048,               # Maximum audio length
     output_filename="collaboration.wav"       # Auto-save option
 )
@@ -152,30 +196,6 @@ audio = tts.generate_speech(
 
 ---
 
-## Speaker System
-
-Our speaker system features five distinct Bambara voices:
-
-```python
-from maliba_ai.config.speakers import Speakers
-
-# View all available speakers
-all_speakers = Speakers.get_all_speakers()
-for speaker in all_speakers:
-    print(f"Speaker: {speaker.id}")
-
-# Get specific speaker by name
-bourama = Speakers.get_speaker_by_name("Bourama")
-
-# Speaker recommendations:
-# - Bourama: Most stable and accurate (recommended for production)
-# - Adame: Natural conversational tone
-# - Moussa: Clear pronunciation
-# - Modibo: Expressive delivery
-# - Seydou: Balanced characteristics
-```
-
----
 
 ## Generation Parameters
 
@@ -183,33 +203,39 @@ The SDK comes with optimized default parameters that provide the best quality:
 
 ### Default Configuration
 ```python
-# These defaults are optimized for Bambara - avoid changing unless necessary
-temperature=0.8        # Optimal balance between consistency and naturalness
-top_k=50              # Vocabulary selection size
-top_p=1.0             # Nucleus sampling threshold
-max_new_audio_tokens=2048  # Maximum audio sequence length
+
+temperature=0.8              # Optimal balance between consistency and naturalness
+top_k=50                    # Vocabulary selection size
+top_p=1.0                   # Nucleus sampling threshold (default)
+max_new_audio_tokens=2048   # Maximum audio sequence length
 ```
 
 ### Parameter Guidelines
-- **Temperature**: Keep at 0.8. Lower values may sound robotic, higher values can introduce artifacts
-- **Top-k/Top-p**: Defaults provide best quality. Experimentation often reduces accuracy
+- **Temperature**: Keep at 0.8. Lower values (0.1-0.6) may sound robotic, higher values (1.0+) can introduce artifacts
+- **Top-k**: Range 1-100. Default of 50 provides best quality
+- **Top-p**: Range 0.1-1.0. Values like 0.9 can improve quality for some speakers
 - **Max tokens**: Increase only for very long texts (splits recommended instead)
 
-### When to Adjust Parameters
+### Advanced Parameter Control
 ```python
-# For very short texts
+# Conservative settings for maximum stability
 audio = tts.generate_speech(
     "Ce!",  # "Hello!"
-    speaker_id=Bourama,
-    max_new_audio_tokens=1024  # Shorter for efficiency
+    speaker_id=Speakers.Bourama,
+    temperature=0.6,              # More conservative
+    top_k=30,                     # More focused vocabulary
+    top_p=0.8,                    # Nucleus sampling
+    max_new_audio_tokens=1024     # Shorter for efficiency
 )
 
-# For experimental/creative applications only
+# Creative settings for experimental use
 audio = tts.generate_speech(
     text,
-    speaker_id=Bourama,
-    temperature=0.7,  # Slightly more conservative
-    top_k=40         # More focused vocabulary
+    speaker_id=Speakers.Ngolo,
+    temperature=1.0,              # More varied
+    top_k=70,                     # Broader vocabulary
+    top_p=0.95,                   # Slight nucleus sampling
+    max_new_audio_tokens=2048
 )
 ```
 
@@ -224,12 +250,12 @@ import numpy as np
 import soundfile as sf
 
 # Generate audio
-audio = tts.generate_speech("Baara ka nɔgɔya", speaker_id=Bourama)
+audio = tts.generate_speech("Baara ka nɔgɔya", speaker_id=Speakers.Bourama)
 
 # Method 1: Direct file saving during generation
 audio = tts.generate_speech(
     "Baara ka nɔgɔya", 
-    speaker_id=Bourama,
+    speaker_id=Speakers.Bourama,
     output_filename="work_improves.wav"
 )
 
@@ -240,9 +266,16 @@ sf.write("output.wav", audio, 16000)
 print(f"Duration: {len(audio)/16000:.2f} seconds")
 print(f"Sample rate: 16000 Hz")
 print(f"Channels: 1 (mono)")
+print(f"Data type: {audio.dtype}")
 
 # Method 4: Audio processing
 normalized_audio = audio / np.max(np.abs(audio))
+
+# Method 5: Check if audio was generated successfully
+if audio.size > 0:
+    print("Audio generated successfully!")
+else:
+    print("No audio generated - check input text")
 ```
 
 ---
@@ -254,285 +287,115 @@ normalized_audio = audio / np.max(np.abs(audio))
 Create learning materials with consistent, high-quality pronunciation:
 
 ```python
-# Bambara language lessons
+# Bambara language lessons with different speakers
 lessons = [
-    "Dɔrɔn kelen: I ni ce - Musow kɛlɛ",        # "Lesson one: Hello - Greetings"
-    "Dɔrɔn fila: Tɔgɔ - N tɔgɔ ye ... ye",     # "Lesson two: Names - My name is ..."
-    "Dɔrɔn saba: Jamu - I jamu ye mun ye?",     # "Lesson three: Family - What is your family name?"
+    ("Walanda fɔlɔ: foli - I ni ce.", Speakers.Adama),             
+    ("Walanda filanan : Tɔgɔ - N tɔgɔ ye Sedu", Speakers.Seydou),     
+    ("Walanda sabanan: Jamu - I jamu ye mun ye?", Speakers.Bourama),  
+    ("Walanda  naaninan: Baara - N bɛ baara kɛ", Speakers.Modibo),   
 ]
 
-for i, lesson in enumerate(lessons, 1):
+for i, (lesson, speaker) in enumerate(lessons, 1):
     audio = tts.generate_speech(
         lesson,
-        speaker_id=Bourama,  # Consistent speaker for lessons
-        output_filename=f"lesson_{i:02d}.wav"
+        speaker_id=speaker,
+        output_filename=f"lesson_{i:02d}_{speaker.id.lower()}.wav"
     )
-    print(f"Created lesson {i}")
+    print(f"Created lesson {i} with speaker {speaker.id}")
 ```
 
-### Voice Interface Integration
-
-Build Bambara-speaking applications:
-
-```python
-# Voice assistant responses
-responses = {
-    "greeting": "I ni ce! I bɛ se ka n wele min na?",      # "Hello! What can I call you?"
-    "confirmation": "Awɔ, n ye a faamu",                   # "Yes, I understand"
-    "error": "Hakɛto, segin ka a fɔ",                     # "Sorry, please repeat"
-    "goodbye": "Kan bɛn na! I ni che!",                   # "See you later! Goodbye!"
-}
-
-def generate_assistant_voices():
-    for intent, response in responses.items():
-        audio = tts.generate_speech(
-            response,
-            speaker_id=Bourama,
-            output_filename=f"assistant_{intent}.wav"
-        )
-        print(f"Generated response for: {intent}")
-
-generate_assistant_voices()
-```
-
-### Batch Processing
-
-Process multiple texts efficiently:
-
-```python
-# News headlines in Bambara
-news_items = [
-    "Kalan yɔrɔ kura da Bamakɔ",                         # "New school opens in Bamako"
-    "Sɛnɛkɛlaw ka baara ka ɲɛ",                          # "Farmers' work improves"
-    "Fɛn kura bɛ na bamanankan na",                      # "New things come to Bambara"
-]
-
-def batch_process(texts, speaker=Bourama):
-    results = []
-    for i, text in enumerate(texts):
-        try:
-            audio = tts.generate_speech(
-                text,
-                speaker_id=speaker,
-                output_filename=f"news_{i+1:02d}.wav"
-            )
-            results.append(f"news_{i+1:02d}.wav")
-            print(f"Processed: {text}")
-        except Exception as e:
-            print(f"Error processing '{text}': {e}")
-    return results
-
-batch_process(news_items)
-```
+ **Test speakers**: Try different voices for your specific use case and audience
 
 ---
 
-## Best Practices
-
-### Speaker Selection
-- **Use Bourama for production**: Most stable and accurate results
-- **Consistent speakers**: Use the same speaker for related content
-- **Test speakers**: Try different voices for your specific use case
-
-### Text Preparation
-```python
-# Good practices for input text
-def prepare_bambara_text(text):
-    # Remove extra whitespace
-    text = " ".join(text.split())
-    
-    # Ensure proper sentence ending
-    if not text.endswith(('.', '!', '?')):
-        text += '.'
-    
-    return text
-
-# Example usage
-raw_text = "  I ni ce   "
-clean_text = prepare_bambara_text(raw_text)  # "I ni ce."
-audio = tts.generate_speech(clean_text, speaker_id=Bourama)
-```
-
-### Long Text Handling
-```python
-def synthesize_long_text(text, speaker_id=Bourama, max_length=100):
-    """Split long texts into manageable chunks"""
-    sentences = text.split('. ')
-    audio_chunks = []
-    
-    for sentence in sentences:
-        if sentence.strip():
-            audio = tts.generate_speech(
-                sentence.strip() + '.',
-                speaker_id=speaker_id
-            )
-            audio_chunks.append(audio)
-    
-    # Combine all audio
-    return np.concatenate(audio_chunks) if audio_chunks else np.array([])
-
-# Example with long text
-long_text = "Bamanankan ye kan ye min bɛ kuma Mali la. A bɛ kuma miliyɔn caman fɛ. A ka fɔcogo ka nɔgɔya don."
-full_audio = synthesize_long_text(long_text)
-sf.write("long_speech.wav", full_audio, 16000)
-```
-
----
-
-## Performance Considerations
-
-### GPU Usage
-```python
-import torch
-
-# Check GPU availability
-if torch.cuda.is_available():
-    print(f"GPU: {torch.cuda.get_device_name()}")
-    print(f"Memory: {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB")
-else:
-    print("Running on CPU (slower but functional)")
-```
-
-### Memory Optimization
-```python
-# For memory-constrained environments
-def memory_efficient_synthesis(texts, speaker_id=Bourama):
-    # Process one text at a time instead of batching
-    for i, text in enumerate(texts):
-        audio = tts.generate_speech(
-            text,
-            speaker_id=speaker_id,
-            max_new_audio_tokens=1024,  # Shorter sequences
-            output_filename=f"output_{i}.wav"
-        )
-        # Audio is saved, memory can be freed
-        print(f"Processed text {i+1}/{len(texts)}")
-```
-
-### Batch Efficiency
-```python
-# Reuse the same TTS instance
-tts = BambaraTTSInference()  # Initialize once
-
-# Process multiple texts
-texts = ["Text 1", "Text 2", "Text 3"]
-for text in texts:
-    audio = tts.generate_speech(text, speaker_id=Bourama)
-    
-# Don't create new instances unnecessarily
-```
-
----
-
-## Troubleshooting
-
-### Common Issues and Solutions
-
-**Empty audio output:**
-```python
-# Check text content and length
-text = "I ni ce"
-if not text.strip():
-    print("Error: Empty text provided")
-elif len(text) < 3:
-    print("Warning: Very short text may not generate audio")
-else:
-    audio = tts.generate_speech(text, speaker_id=Bourama)
-```
-
-**CUDA memory errors:**
-```python
-# Reduce token limit for GPU memory issues
-audio = tts.generate_speech(
-    text,
-    speaker_id=Bourama,
-    max_new_audio_tokens=1024  # Reduced from default 2048
-)
-```
-
-**Speaker validation errors:**
-```python
-from maliba_ai.config.settings import SPEAKER_IDS
-
-# Verify speaker availability
-def validate_speaker(speaker):
-    if speaker.id not in SPEAKER_IDS:
-        print(f"Invalid speaker. Available: {SPEAKER_IDS}")
-        return False
-    return True
-
-# Safe speaker usage
-if validate_speaker(Bourama):
-    audio = tts.generate_speech(text, speaker_id=Bourama)
-```
-
-### Performance Issues
-```python
-# Monitor generation time
-import time
-
-start_time = time.time()
-audio = tts.generate_speech(text, speaker_id=Bourama)
-generation_time = time.time() - start_time
-
-print(f"Generated {len(audio)/16000:.2f}s audio in {generation_time:.2f}s")
-print(f"Real-time factor: {generation_time/(len(audio)/16000):.2f}x")
-```
-
----
-
-## Contributing
-
-We welcome contributions to improve Bambara TTS! Here's how to get involved:
-
-```bash
-# Development setup
-git clone https://github.com/MALIBA-AI/bambara-tts.git
-cd bambara-tts
-pip install -e ".[dev]"
-
-# Run tests
-pytest tests/
-
-# Code formatting
-ruff format .
-isort .
-```
-
-**Ways to contribute:**
-- **Training data**: Help collect diverse Bambara speech samples
-- **Bug reports**: Report issues with detailed reproduction steps
-- **Documentation**: Improve guides and examples
-- **Testing**: Test on different hardware and use cases
-- **Speaker diversity**: Contribute additional voice recordings
-
-**Contribution guidelines:**
-- Follow existing code style
-- Add tests for new features
-- Update documentation
-- Respect speaker privacy and consent
-
----
-
-## Support and Community
-
-- **GitHub Issues**: [Report bugs and request features](https://github.com/MALIBA-AI/bambara-tts/issues)
-- **Email**: contact@maliba-ai.com
-- **Website**: [maliba-ai.com](https://maliba-ai.com)
-
----
 
 ## License
 
-This project is released under the MIT License. See [LICENSE](LICENSE) for details.
+⚠️ **Important License Information**
 
----
+This project is built upon Spark-TTS architecture and is subject to **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 (CC BY-NC-SA 4.0)** license due to the licensing terms of underlying training data and model architecture.
 
-## Acknowledgments
+### Key License Terms:
+
+- **Non-Commercial Use Only**: This model can only be used for non-commercial purposes including:
+  - Academic research and education
+  - Personal projects and learning
+  - Open-source community development
+  - Linguistic and cultural preservation research
+
+- **Share-Alike**: Any modifications, derivatives, or improvements must also be released under CC BY-NC-SA 4.0
+
+- **Attribution Required**: Proper attribution must be provided when using or modifying the model
+
+
+### Commercial Use
+
+For commercial licensing options, please contact the MALIBA-AI team at contact@maliba-ai.com
+
+### Compliance Requirements
+
+When using this model, you must:
+
+1. **Provide Attribution**: Credit MALIBA-AI and the Spark-TTS foundation
+2. **Respect Non-Commercial Terms**: Ensure your use case qualifies as non-commercial
+3. **Share Derivatives**: Release any modifications under the same license
+4. **Include License Notice**: Include license information in your distributions
+
+### Example Attribution
+
+```
+This work uses MALIBA-AI Bambara TTS, built on Spark-TTS architecture.
+Licensed under CC BY-NC-SA 4.0.
+Original work: https://github.com/MALIBA-AI/bambara-tts
+Spark-TTS: https://github.com/SparkAudio/Spark-TTS
+```
+
+For full license text, see [LICENSE](LICENSE) file.
+
+## Usage Disclaimer & Ethical Guidelines
+
+⚠️ **Important Usage Guidelines**
+
+This Bambara TTS model is intended for legitimate applications that benefit the Bambara-speaking community and support language preservation efforts.
+
+### Authorized Uses:
+- **Educational purposes**: Language learning, pronunciation training, literacy programs
+- **Accessibility tools**: Screen readers, communication aids for people with disabilities
+- **Cultural preservation**: Documenting oral traditions, creating audio archives
+- **Research**: Academic studies on Bambara linguistics and speech technology
+- **Community applications**: Local radio, public announcements, community services
+
+### Prohibited Uses:
+- **Unauthorized voice cloning** or impersonation without explicit consent
+- **Fraud or scams** using generated Bambara speech
+- **Deepfakes or misleading content** that could harm individuals or communities
+- **Any illegal activities** under local or international law
+- **Harassment or discrimination** targeting any group or individual
+
+### Ethical Responsibilities:
+- Always obtain proper consent when using someone's voice characteristics
+- Clearly disclose when audio content is AI-generated
+- Respect the cultural significance of the Bambara language
+- Support the Bambara-speaking community's digital inclusion
+- Report any misuse of the technology to the MALIBA-AI team
+
+### Community Standards:
+The MALIBA-AI project is committed to responsible AI development that empowers communities rather than exploiting them. We encourage users to:
+- Engage with Bambara speakers and communities respectfully
+- Contribute to the preservation and promotion of Bambara language
+- Use this technology to bridge digital divides, not create them
+- Share improvements back with the community when possible
+
+**The developers assume no liability for any misuse of this model. Users are responsible for ensuring their applications comply with applicable laws and ethical standards.**
+
+If you have concerns about potential misuse or need guidance on ethical applications, please contact us at contact@maliba-ai.com
 
 - **Spark-TTS**: Foundation architecture for neural speech synthesis
-- **Bambara speakers**: Community members who contributed voice data
-- **MALIBA-AI team**: Dedicated developers and researchers
-- **Mali**: Our inspiration for building inclusive technology
+- **Bambara speakers**: Community members who contributed voice data across all ten speakers
+- **MALIBA-AI team**: Dedicated developers, researchers, and linguists
+- **Mali**: Our inspiration for building inclusive technology that serves all communities
+- **Open source community**: Contributors and users who help improve the system
 
 **MALIBA-AI ka baara kɛ ka bamanankan lakana diɲɛ kɔnɔ!** *(MALIBA-AI works to preserve Bambara language in the world!)*
+
+---
