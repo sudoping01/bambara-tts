@@ -388,7 +388,7 @@ The MALIBA-AI project is committed to responsible AI development that empowers c
 
 **The developers assume no liability for any misuse of this model. Users are responsible for ensuring their applications comply with applicable laws and ethical standards.**
 
-If you have concerns about potential misuse or need guidance on ethical applications, please contact us at contact@maliba-ai.com
+If you have concerns about potential misuse or need guidance on ethical applications, please contact us at ml.maliba.ai@gmail.com
 
 - **Spark-TTS**: Foundation architecture for neural speech synthesis
 - **Bambara speakers**: Community members who contributed voice data across all ten speakers
