@@ -1,0 +1,39 @@
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
+
+Copyright (c) 2025 MALIBA-AI
+
+This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+You are free to:
+- Share, copy and redistribute the material in any medium or format
+- Adapt, remix, transform, and build upon the material
+
+Under the following terms:
+- Attribution:  You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+- NonCommercial: You may not use the material for commercial purposes.
+- ShareAlike:  If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
+
+No additional restrictions: You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
+
+NOTICES:
+You do not have to comply with the license for elements of the material in the public domain or where your use is permitted by an applicable exception or limitation.
+
+No warranties are given. The license may not give you all of the permissions necessary for your intended use. For example, other rights such as publicity, privacy, or moral rights may limit how you use the material.
+
+ATTRIBUTION REQUIREMENTS:
+When using this software, you must provide attribution as follows:
+
+"This work uses MALIBA-AI Bambara TTS, built on Spark-TTS architecture.
+Licensed under CC BY-NC-SA 4.0.
+Original work: https://github.com/MALIBA-AI/bambara-tts
+Spark-TTS: https://github.com/SparkAudio/Spark-TTS"
+
+COMMERCIAL LICENSING:
+For commercial use inquiries, please contact: ml.maliba.ai@gmail.com
+
+DISCLAIMER:
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+This software is built upon Spark-TTS architecture, which is also subject to CC BY-NC-SA 4.0 licensing terms.
+
+For the complete license text, visit: https://creativecommons.org/licenses/by-nc-sa/4.0/
