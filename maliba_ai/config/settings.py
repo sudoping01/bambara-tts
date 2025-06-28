@@ -3,7 +3,7 @@ from typing import List
 
 
 class Settings : 
-    model_repo:str =  "sudoping01/bambara-tts-1-merged-16bit"
+    model_repo:str =  "MALIBA-AI/bambara-tts"
     base_spark_model:str = "unsloth/Spark-TTS-0.5B"
     speakers_ids:List = ["SPEAKER_1", "SPEAKER_2", "SPEAKER_3", "SPEAKER_4", "SPEAKER_5", "SPEAKER_6", "SPEAKER_7", "SPEAKER_8", "SPEAKER_9", "SPEAKER_10"]
 
