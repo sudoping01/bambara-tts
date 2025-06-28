@@ -8,7 +8,7 @@ with open(os.path.join(this_directory, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="maliba_ai",
-    version="1.0.0",
+    version="v1.0.0-beta.1",
     author="Maliba-AI Engineering Team",  
     author_email="contact@maliba-ai.com",  
     description="Bambara Text-to-Speech system using Maliba-AI models",
@@ -63,7 +63,7 @@ setup(
     extras_require={
 
         "full": [
-            "unsloth",
+            "unsloth==2025.6.1",
             "bitsandbytes>=0.41.0; platform_system!='Darwin'",
             "triton>=2.1.0,<3.0.0; platform_system=='Linux'",
             "scipy>=1.10.0",
