@@ -41,7 +41,7 @@ setup(
     install_requires=[
         "torch>=2.0.0",
         "torchaudio>=2.0.0", 
-        "transformers==4.40.0",
+        "transformers>=4.40.0",
         "huggingface_hub>=0.20.0",
     
         "librosa==0.11.0",
