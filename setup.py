@@ -11,6 +11,7 @@ setup(
     version="v1.0.1-beta.1",
     author="sudoping01",  
     author_email="sudoping01@gmail.com",  
+
     description="Bambara Text-to-Speech system using Maliba-AI models",
     long_description=long_description,
     long_description_content_type="text/markdown",
