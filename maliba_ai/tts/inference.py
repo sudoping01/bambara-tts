@@ -50,7 +50,7 @@ class BambaraTTSInference:
             "<|start_global_token|>"
         ])
         
-        model_inputs = self._tokenizer([prompt], return_tensors="pt").to(self.device)
+        model_inputs = self._tokenizer([prompt], return_tensors="pt").to(self._device)
     
         generated_ids = self._model.generate(
             **model_inputs,
