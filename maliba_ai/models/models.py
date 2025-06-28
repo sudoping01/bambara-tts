@@ -1,12 +1,12 @@
 
-from unsloth import FastModel
 import os
 import torch
+from unsloth import FastModel
 from huggingface_hub import snapshot_download
-from maliba_ai.config.settings import MODEL_REPO, BASE_SPARK_MODEL
+from maliba_ai.config.settings import Settings
 from maliba_ai.sparktts.models.audio_tokenizer import BiCodecTokenizer
 
-def load_tts_model(model_path:str = MODEL_REPO, max_seq_length:int = 2048):
+def load_tts_model(model_path:str = Settings.model_repo, max_seq_length:int = 2048):
     """
     Load the TTS model and tokenizer from the specified repository.
     
@@ -38,6 +38,6 @@ def load_audio_tokenizer(device):
         BiCodecTokenizer: Loaded audio tokenizer instance.
     """
     if not os.path.exists("Spark-TTS-0.5B"):
-        snapshot_download(BASE_SPARK_MODEL, local_dir="Spark-TTS-0.5B")
+        snapshot_download(Settings.base_spark_model, local_dir="Spark-TTS-0.5B")
     audio_tokenizer = BiCodecTokenizer("Spark-TTS-0.5B", device)
     return audio_tokenizer
