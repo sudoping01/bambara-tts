@@ -60,6 +60,13 @@ with uv (faster)
 ```bash
     uv pip install git+https://github.com/MALIBA-AI/bambara-tts.git
 ```
+Note : if you are in colab  please install those additional dependencies : 
+
+```
+    !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft trl triton cut_cross_entropy unsloth_zoo
+    !pip install sentencepiece protobuf "datasets>=3.4.1" huggingface_hub hf_transfer
+    !pip install --no-deps unsloth
+```
 
 ---
 
@@ -330,7 +337,7 @@ This project is built upon Spark-TTS architecture and is subject to **Creative C
 
 ### Commercial Use
 
-For commercial licensing options, please contact the MALIBA-AI team at contact@maliba-ai.com
+For commercial licensing options, please contact the MALIBA-AI team at ml.maliba.ai@gmail.com
 
 ### Compliance Requirements
 
@@ -391,11 +398,9 @@ The MALIBA-AI project is committed to responsible AI development that empowers c
 If you have concerns about potential misuse or need guidance on ethical applications, please contact us at ml.maliba.ai@gmail.com
 
 - **Spark-TTS**: Foundation architecture for neural speech synthesis
-- **Bambara speakers**: Community members who contributed voice data across all ten speakers
+
 - **MALIBA-AI team**: Dedicated developers, researchers, and linguists
 - **Mali**: Our inspiration for building inclusive technology that serves all communities
 - **Open source community**: Contributors and users who help improve the system
-
-**MALIBA-AI ka baara kɛ ka bamanankan lakana diɲɛ kɔnɔ!** *(MALIBA-AI works to preserve Bambara language in the world!)*
 
 ---
