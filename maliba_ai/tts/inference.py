@@ -81,12 +81,12 @@ class BambaraTTSInference:
         
         pred_global_ids = pred_global_ids.unsqueeze(0)  # Shape: (1, 1, N_global)
         
-        self._audio_tokenizer.device = self.device
-        self._audio_tokenizer.model.to(self.device)
+        self._audio_tokenizer.device = self._device
+        self._audio_tokenizer.model.to(self._device)
         
         wav_np = self._audio_tokenizer.detokenize(
-            pred_global_ids.to(self.device).squeeze(0),  # Shape: (1, N_global)
-            pred_semantic_ids.to(self.device)            # Shape: (1, N_semantic)
+            pred_global_ids.to(self._device).squeeze(0),  # Shape: (1, N_global)
+            pred_semantic_ids.to(self._device)            # Shape: (1, N_semantic)
         )
         
         return wav_np
