@@ -31,7 +31,7 @@ class Speakers:
     Seydou: SingleSpeaker    = SingleSpeaker(id="SPEAKER_5")
     Amadou : SingleSpeaker   = SingleSpeaker(id="SPEAKER_6")
     Bakary: SingleSpeaker    = SingleSpeaker(id="SPEAKER_7")
-    Ngolo: SingleSpeaker     = SingleSpeaker(id="SPEKAER_8")
+    Ngolo: SingleSpeaker     = SingleSpeaker(id="SPEAKER_8")
     Amara: SingleSpeaker     = SingleSpeaker(id="SPEAKER_9")
     Ibrahima : SingleSpeaker = SingleSpeaker(id="SPEAKER_10")
 
