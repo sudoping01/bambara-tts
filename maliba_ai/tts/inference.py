@@ -4,12 +4,11 @@ import re
 import soundfile as sf
 
 from maliba_ai.models.models import load_tts_model, load_audio_tokenizer
-from maliba_ai.config.speakers import Adama, SingleSpeaker, SPEAKER_IDS
-from maliba_ai.config.settings import MODEL_REPO
+from maliba_ai.config.speakers import Adama, SingleSpeaker, Settings
 from typing import  Optional
 
 class BambaraTTSInference:
-    def __init__(self, model_path:Optional[str] = MODEL_REPO, max_seq_length:Optional[int] = 2048):
+    def __init__(self, model_path:Optional[str] = Settings.model_repo, max_seq_length:Optional[int] = 2048):
         """
         Initialize the Bambara TTS inference class.
         
@@ -20,6 +19,7 @@ class BambaraTTSInference:
         self._model, self._tokenizer = load_tts_model(model_path=model_path, max_seq_length=max_seq_length)
         self._audio_tokenizer = load_audio_tokenizer(self._device)
     
+
     @torch.inference_mode()
     def _generate_speech_from_text(
         self,
@@ -119,7 +119,7 @@ class BambaraTTSInference:
             np.ndarray: Generated waveform as a NumPy array.
         """
 
-        if speaker_id.id.upper() not in SPEAKER_IDS : 
+        if speaker_id.id.upper() not in Settings.speakers_ids : 
             raise ValueError("This speaker is not supported")
         
         if not text : 
