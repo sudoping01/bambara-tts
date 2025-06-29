@@ -93,7 +93,7 @@ setup(
         ],
         
         "unsloth": [
-            "unsloth",
+            "unsloth==2025.6.1",,
             "bitsandbytes>=0.41.0; platform_system!='Darwin'",
             "triton>=2.1.0,<3.0.0; platform_system=='Linux'",
         ],
