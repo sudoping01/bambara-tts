@@ -61,7 +61,7 @@ setup(
 
     extras_require={
         "full": [
-            "unsloth",  # Use latest compatible version instead of pinned version
+            "unsloth==2025.6.1",  # Use latest compatible version instead of pinned version
             "bitsandbytes>=0.41.0; platform_system!='Darwin'",
             "triton>=2.1.0,<3.0.0; platform_system=='Linux'",
             "scipy>=1.10.0",
@@ -90,7 +90,7 @@ setup(
         ],
         
         "unsloth": [
-            "unsloth",  # Use latest compatible version (key change!)
+            "unsloth==2025.6.1",  # Use latest compatible version (key change!)
             "bitsandbytes>=0.41.0; platform_system!='Darwin'",
             "triton>=2.1.0,<3.0.0; platform_system=='Linux'",
         ],
