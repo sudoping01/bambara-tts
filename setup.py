@@ -11,7 +11,6 @@ setup(
     version="v1.0.1-beta",
     author="sudoping01",  
     author_email="sudoping01@gmail.com",  
-
     description="Bambara Text-to-Speech system using Maliba-AI models",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -38,7 +37,6 @@ setup(
     ],
     python_requires=">=3.8",
 
-
     install_requires=[
         "torch>=2.0.0",
         "torchaudio>=2.0.0", 
@@ -58,13 +56,12 @@ setup(
         "requests>=2.25.0",
         "safetensors>=0.4.0",
         "packaging>=20.0",
-        "unsloth==2025.6.1"
+        "unsloth==2025.6.1"  # Keep this for now to maintain compatibility
     ],
 
     extras_require={
-
         "full": [
-            "unsloth==2025.6.1",
+            "unsloth",  # Use latest compatible version instead of pinned version
             "bitsandbytes>=0.41.0; platform_system!='Darwin'",
             "triton>=2.1.0,<3.0.0; platform_system=='Linux'",
             "scipy>=1.10.0",
@@ -93,12 +90,11 @@ setup(
         ],
         
         "unsloth": [
-            "unsloth==2025.6.1",
+            "unsloth",  # Use latest compatible version (key change!)
             "bitsandbytes>=0.41.0; platform_system!='Darwin'",
             "triton>=2.1.0,<3.0.0; platform_system=='Linux'",
         ],
         
-
         "dev": [
             "ruff==0.11.4",
             "isort==6.0.1", 
@@ -109,7 +105,6 @@ setup(
             "mypy>=0.950",
         ],
         
-
         "docs": [
             "sphinx>=4.0.0",
             "sphinx-rtd-theme>=0.5.0",
