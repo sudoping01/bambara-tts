@@ -75,7 +75,7 @@ Note : if you are in colab  please install those additional dependencies :
 Get started with Bambara TTS in under a minute:
 
 ```python
-from maliba_ai.tts import BambaraTTSInference
+from maliba_ai.tts.inference import BambaraTTSInference
 from maliba_ai.config.settings import Speakers
 import soundfile as sf
 
