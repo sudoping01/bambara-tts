@@ -1,6 +1,6 @@
 # MALIBA-AI Bambara TTS SDK
 
-Welcome to the MALIBA-AI Bambara Text-to-Speech! This is the **first open-source TTS system** specifically designed for the Bambara language. Whether you're building educational platforms, creating voice interfaces, or developing accessibility tools, this SDK provides professional grade Bambara speech synthesis with multiple authentic speakers.
+Welcome to the MALIBA-AI Bambara Text-to-Speech Inference SDK! This is the **first open-source TTS system** specifically designed for the Bambara language. Whether you're building educational platforms, creating voice interfaces, or developing accessibility tools, this SDK provides professional grade Bambara speech synthesis with multiple authentic speakers.
 
 ## Table of Contents
 
@@ -64,7 +64,7 @@ Note : if you are in colab  please install those additional dependencies :
 
 ```
     !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft trl triton cut_cross_entropy unsloth_zoo
-    !pip install sentencepiece protobuf "datasets>=3.4.1" huggingface_hub hf_transfer
+    !pip install sentencepiece protobuf huggingface_hub hf_transfer
     !pip install --no-deps unsloth
 ```
 
@@ -111,12 +111,6 @@ tts = BambaraTTSInference(
 )
 ```
 
-The system automatically:
-- Detects and uses GPU acceleration when available
-- Downloads required models on first use
-- Loads all available speaker voices
-- Optimizes memory usage for your hardware
-
 ---
 
 ## Basic Usage
@@ -129,7 +123,7 @@ The most straightforward way to generate Bambara speech:
 from maliba_ai.config.settings import Speakers
 
 # Basic synthesis with default speaker (Adama)
-text = "Bamanankan ye kan ɲuman ye"  # "Bambara is a beautiful language"
+text = "Bamanankan ye kan ɲuman ye"  
 audio = tts.generate_speech(text)
 ```
 
@@ -254,7 +248,6 @@ Handle generated audio efficiently:
 
 ```python
 import numpy as np
-import soundfile as sf
 
 # Generate audio
 audio = tts.generate_speech("Baara ka nɔgɔya", speaker_id=Speakers.Bourama)
@@ -266,23 +259,7 @@ audio = tts.generate_speech(
     output_filename="work_improves.wav"
 )
 
-# Method 2: Save after generation
-sf.write("output.wav", audio, 16000)
 
-# Method 3: Audio analysis
-print(f"Duration: {len(audio)/16000:.2f} seconds")
-print(f"Sample rate: 16000 Hz")
-print(f"Channels: 1 (mono)")
-print(f"Data type: {audio.dtype}")
-
-# Method 4: Audio processing
-normalized_audio = audio / np.max(np.abs(audio))
-
-# Method 5: Check if audio was generated successfully
-if audio.size > 0:
-    print("Audio generated successfully!")
-else:
-    print("No audio generated - check input text")
 ```
 
 ---
@@ -335,57 +312,36 @@ This project is built upon Spark-TTS architecture and is subject to **Creative C
 - **Attribution Required**: Proper attribution must be provided when using or modifying the model
 
 
-### Commercial Use
-
-For commercial licensing options, please contact the MALIBA-AI team at ml.maliba.ai@gmail.com
-
-### Compliance Requirements
-
-When using this model, you must:
-
-1. **Provide Attribution**: Credit MALIBA-AI and the Spark-TTS foundation
-2. **Respect Non-Commercial Terms**: Ensure your use case qualifies as non-commercial
-3. **Share Derivatives**: Release any modifications under the same license
-4. **Include License Notice**: Include license information in your distributions
-
-### Example Attribution
-
-```
-This work uses MALIBA-AI Bambara TTS, built on Spark-TTS architecture.
-Licensed under CC BY-NC-SA 4.0.
-Original work: https://github.com/MALIBA-AI/bambara-tts
-Spark-TTS: https://github.com/SparkAudio/Spark-TTS
-```
-
 For full license text, see [LICENSE](LICENSE) file.
+
 
 ## Usage Disclaimer & Ethical Guidelines
 
 ⚠️ **Important Usage Guidelines**
 
 This Bambara TTS model is intended for legitimate applications that benefit the Bambara-speaking community and support language preservation efforts.
-
+---
 ### Authorized Uses:
 - **Educational purposes**: Language learning, pronunciation training, literacy programs
 - **Accessibility tools**: Screen readers, communication aids for people with disabilities
 - **Cultural preservation**: Documenting oral traditions, creating audio archives
 - **Research**: Academic studies on Bambara linguistics and speech technology
 - **Community applications**: Local radio, public announcements, community services
-
+---
 ### Prohibited Uses:
 - **Unauthorized voice cloning** or impersonation without explicit consent
 - **Fraud or scams** using generated Bambara speech
 - **Deepfakes or misleading content** that could harm individuals or communities
 - **Any illegal activities** under local or international law
 - **Harassment or discrimination** targeting any group or individual
-
+---
 ### Ethical Responsibilities:
 - Always obtain proper consent when using someone's voice characteristics
 - Clearly disclose when audio content is AI-generated
 - Respect the cultural significance of the Bambara language
 - Support the Bambara-speaking community's digital inclusion
 - Report any misuse of the technology to the MALIBA-AI team
-
+---
 ### Community Standards:
 The MALIBA-AI project is committed to responsible AI development that empowers communities rather than exploiting them. We encourage users to:
 - Engage with Bambara speakers and communities respectfully
@@ -395,12 +351,7 @@ The MALIBA-AI project is committed to responsible AI development that empowers c
 
 **The developers assume no liability for any misuse of this model. Users are responsible for ensuring their applications comply with applicable laws and ethical standards.**
 
+---
 If you have concerns about potential misuse or need guidance on ethical applications, please contact us at ml.maliba.ai@gmail.com
-
-- **Spark-TTS**: Foundation architecture for neural speech synthesis
-
-- **MALIBA-AI team**: Dedicated developers, researchers, and linguists
-- **Mali**: Our inspiration for building inclusive technology that serves all communities
-- **Open source community**: Contributors and users who help improve the system
 
 ---
