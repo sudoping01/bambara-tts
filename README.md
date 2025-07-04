@@ -43,7 +43,7 @@ This Bambara TTS SDK represents a breakthrough in African language technology:
 Install the MALIBA-AI SDK using pip:
 
 ```bash
-pip install maliba_ai
+pip install maliba-ai==1.1.1b0
 ```
 
 For development installations:
